@@ -18,11 +18,8 @@ The repository consists of the following files:
 - `read.py`: This file contains a helper function that reads a graph from a text file. The text file should contain one edge per line, with the nodes separated by a comma. For example, the file could contain the following lines:
 
     ```
-    A,B
-    A,C
-    B,D
-    C,D
-    D,E
+    127.0.0.1,127.0.0.2,4
+    127.0.0.1,127.0.0.4,4
     ```
 
 - `node.py`: This file contains the `Node` class, which represents a node in the graph. It contains methods for adding and removing neighbors of the node.
@@ -40,14 +37,25 @@ The `Graph` class can be used to create a graph and calculate its shortest paths
 Here's an example usage:
 
 ```
-from bellmanford import Graph
+#Turn on all the IPS if running on mac using the command:
+sudo ifconfig lo0 alias 127.0.0.1 up  
+sudo ifconfig lo0 alias 127.0.0.2 up
+sudo ifconfig lo0 alias 127.0.0.3 up
+sudo ifconfig lo0 alias 127.0.0.4 up
+sudo ifconfig lo0 alias 127.0.0.5 up
+sudo ifconfig lo0 alias 127.0.0.6 up
 
-ip_list = ["192.168.0.1", "192.168.0.2", "192.168.0.3"]
-routing_table = [["192.168.0.1", "192.168.0.2", 5], ["192.168.0.2", "192.168.0.3", 3], ["192.168.0.3", "192.168.0.1", 1]]
-source_ip = "192.168.0.1"
-port = 8000
 
-graph = Graph(ip_list, routing_table, source_ip, port)
+#run the code using the command in terminal with terminal head in the folder which has the code 
+python3 node.py -i 127.0.0.1 -p 8000
+python3 node.py -i 127.0.0.2 -p 8000
+python3 node.py -i 127.0.0.3 -p 8000
+python3 node.py -i 127.0.0.4 -p 8000
+python3 node.py -i 127.0.0.5 -p 8000
+python3 node.py -i 127.0.0.6 -p 8000
+
+
+
 ```
 
 The `Graph` class has a method called `printArr`, which can be used to print the shortest paths calculated by Bellman-Ford's algorithm. It takes the following parameters:
